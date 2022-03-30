@@ -1,0 +1,61 @@
+1. 
+
+DECLARE 
+
+s_id2 varchar2(100); 
+
+name2 varchar2(100); 
+
+year2 number; 
+
+mark2 number; 
+
+borr number; 
+
+BEGIN 
+
+s_id2 := :s_id2; 
+
+name2 := :name2; 
+
+year2 := :year2; 
+
+mark2 := :mark2; 
+
+borr := :borr; 
+
+insert into STUDENT(S_ID, NAME, YEAR, MARK, BORROWED_BOOKS) VALUES(s_id2, name2, year2 , mark2, borr); 
+
+END; 
+
+ 
+
+2. 
+
+create view view4 as select * from co BOOK_COPY  
+
+FULL OUTER JOIN b BOOK_TITLE 
+
+ON b.T_ID 
+
+WHERE co.T_ID=b.T_ID; 
+
+ 
+
+create view view4 as select * from BOOK_COPY  
+
+FULL OUTER JOIN BOOK_TITLE 
+
+ON T_ID 
+
+WHERE BOOK_COPY.T_ID=BOOK_TITLE.T_ID; 
+
+ 
+
+3 
+
+create view view5 as select * from BOOK_COPY 
+
+left join STUDENT 
+
+ON BOOK_COPY.STUDENT_ID=STUDENT.S_ID; 

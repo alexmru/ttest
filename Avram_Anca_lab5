@@ -1,0 +1,42 @@
+EX 1)
+
+DECLARE 
+na varchar(20);
+year number; 
+mark float;
+id number;
+state varchar(20);
+typ varchar(20);
+
+BEGIN 
+id:=:id;
+SELECT name, year_of_study, average_mark into na, year, mark from student
+where s_id = id;
+if mark >9
+then state:= 'Excelent';
+else state:= 'Good';
+end if;
+if year = 4
+then typ:= 'SeniorStudent';
+else typ:= 'Student';
+end if;
+dbms_output.put_line(na|| ' ' || state ||' ' || mark ||' ' || typ ||' ' || year);
+END;
+
+EX 2)
+DECLARE
+percent NUMBER;
+total NUMBER;
+not_borrowed NUMBER;
+BEGIN
+FOR book_row IN (SELECT title FROM book_title)
+LOOP
+dbms_output.put_line(book_row.title);
+END LOOP;
+
+SELECT COUNT(*) INTO total FROM book_copy;
+SELECT COUNT(*) INTO not_borrowed FROM book_copy WHERE student_id IS NULL;
+
+percent := (not_borrowed*100)/total;
+dbms_output.put_line(percent || '% are not taken');
+END;

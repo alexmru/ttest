@@ -1,0 +1,34 @@
+Ex 1)
+
+DECLARE
+    na varchar2 (20);
+    year number;
+    mark float;
+    id number;
+    state varchar2 (20);
+    typ varchar2 (20);
+BEGIN
+    id:=:id;
+    select name,year_of_study,average_mark into na,year,mark from student where s_id = id;
+    if mark>9 
+        then state:='Excelent';
+    else state:='Good';
+    end if;
+    if year=4 
+        then typ:='SeniorStudent';
+    else typ:='Student';
+    end if;
+    dbms_output.put_line(na|| ' ' || state ||' ' || mark ||' ' || typ ||' ' || year);
+END;
+
+declare 
+ total number;
+ ava number;
+ 
+begin
+FOR x IN (select t.t_id as id, t.title as title, count(t.title) as total from book_copy c inner join book_title t on t.t_id=c.title_id group by t.title,t.t_id)
+   LOOP 
+      select count(c.title_id) into ava from book_copy c where student_id is not null and c.title_id = x.id group by c.title_id; 
+     dbms_output.put_line(x.title ||' '|| (x.total-ava)*100/x.total || '%');
+   END LOOP; 
+end;

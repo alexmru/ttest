@@ -1,0 +1,17 @@
+DELETE FROM STUDENT WHERE STUDENT.S_ID IN (SELECT BOOK_COPY.STUDENT_ID FROM BOOK_COPY)
+
+INSERT INTO Book_title(T_ID , Title , Authors , Publisher , Page_number , Year) VALUES (6,'Titlu6','Author6','McGraw_Hil',600,2005)
+INSERT INTO Book_title(T_ID , Title , Authors , Publisher , Page_number , Year) VALUES (7,'Titlu7','Author7','McGraw_Hil',700,2006)
+INSERT INTO Book_title(T_ID , Title , Authors , Publisher , Page_number , Year) VALUES (8,'Titlu8','Author8','EdituraUPT',800,2007)
+INSERT INTO Book_title(T_ID , Title , Authors , Publisher , Page_number , Year) VALUES (9,'Titlu9','Author9','EdituraUPT',900,2008)
+INSERT INTO Book_title(T_ID , Title , Authors , Publisher , Page_number , Year) VALUES (10,'Titlu10','Author10','EdituraUPT',1000,2009)
+
+SELECT '['||T_ID||']'||Authors||','||'"'||Title||'"'||','||Publisher||','||Year||','||Page_number||'pgs' "Books"
+     FROM BOOK_TITLE;
+
+SELECT S_ID,
+       DECODE (S_ID,NULL, 'BORROWED', 
+                             'NOT BORROWED') 
+       FROM STUDENT
+
+
